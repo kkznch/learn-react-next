@@ -1,7 +1,9 @@
+import { List } from '../components/Todo/List';
+
 export default function Home() {
   return (
     <div>
-        <p>Hello, World.</p>
+        <List />
     </div>
   )
 }
