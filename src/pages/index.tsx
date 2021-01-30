@@ -1,4 +1,7 @@
-import { useForm, NestedValue } from 'react-hook-form';
+import { NextPage } from 'next';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../slices/todoListSlice';
 import { Input } from '../components/Todo/Input';
 import { List } from '../components/Todo/List';
 
@@ -6,14 +9,15 @@ type FormData = {
     todo: string;
 };
 
-export default function Home() {
+const Home: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
     defaultValues: {
       todo: '',
     },
   });
+  const dispatch = useDispatch();
   const onSubmit = handleSubmit(({todo}) => {
-    console.log('submit: ', todo);
+    dispatch(addTodo(todo));
     reset();
   })
 
@@ -26,3 +30,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;
